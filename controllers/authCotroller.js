@@ -90,7 +90,7 @@ const resetPassword = async (req, res, next) => {
   if (!username || !newPassword || !confirmNewPassword) {
     return next(new customError("Please enter all fields", 400));
   }
-  const user = await User.findOne({ username, phone });
+  const user = await User.findOne({ username });
   if (!user) {
     return next(new customError("Invalid credentials", 400));
   }
