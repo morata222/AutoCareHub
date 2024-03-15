@@ -21,13 +21,11 @@ const getBooking = async (req, res, next) => {
 const createBooking = async (req, res, next) => {
   const user = req.user._id;
 
-  // check if the user booked before
-  const bookingExists = await Booking.findOne({ user });
-  if (bookingExists) {
-    return next(new customError("User already booked", 400));
-  }
-
   const booking = new Booking({ ...req.body, user });
+
+  if (!booking.validateDate()) {
+    return next(new customError("Invalid date", 400));
+  }
 
   try {
     const newBooking = await booking.save();

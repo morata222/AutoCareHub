@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
+const customError = require("../errors/customError");
 
 const bookingSchema = new mongoose.Schema(
   {
@@ -46,14 +47,11 @@ bookingSchema.pre("save", async function (next) {
   next();
 });
 
-bookingSchema.pre("save", async function (next) {
-  // check if the date is valid and not in the past
+// validate date
+bookingSchema.methods.validateDate = function () {
   const date = new Date(this.date);
-  if (date < new Date()) {
-    return next(new Error("Invalid date"));
-  }
-  next();
-});
+  return date > Date.now();
+};
 
 //populate user
 bookingSchema.pre(/^find/, function (next) {
