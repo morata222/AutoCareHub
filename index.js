@@ -2,9 +2,12 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const connectDB = require("./db/connect");
-const authRoute = require("./routes/authRoute");
 const errorHandler = require("./middleware/errorHandler");
 const notFound = require("./middleware/not-found");
+
+const authRoute = require("./routes/authRoute");
+const userRoute = require("./routes/userRoute");
+const bookingRoute = require("./routes/bookingRoute");
 
 const app = express();
 
@@ -17,6 +20,8 @@ connectDB();
 const PORT = 8000;
 
 app.use("/api/auth", authRoute);
+app.use("/api/users", userRoute);
+app.use("/api/bookings", bookingRoute);
 
 app.use(notFound);
 app.use(errorHandler);

@@ -1,8 +1,8 @@
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = require("../config/keys");
 
-const generateToken = (id) => {
-  const token = jwt.sign({ userId: id }, JWT_SECRET, {
+const generateToken = (id, role) => {
+  const token = jwt.sign({ userId: id, role }, JWT_SECRET, {
     expiresIn: "3d",
   });
   return token;
@@ -17,8 +17,8 @@ const verifyToken = (token) => {
   }
 };
 
-const attachCookies = (res, id) => {
-  const token = generateToken(id);
+const attachCookies = (res, id, role) => {
+  const token = generateToken(id, role);
   const oneDay = 24 * 60 * 60 * 1000;
 
   res.cookie("token", token, {

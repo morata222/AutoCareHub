@@ -1,7 +1,37 @@
 const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
-const { attachCookies } = require("../utils/jwt");
+const { attachCookies, verifyToken } = require("../utils/jwt");
 const customError = require("../errors/customError");
+
+const protect = async (req, res, next) => {
+  const token = req.cookies.token;
+  if (!token) {
+    return next(new customError("Not logged in", 401));
+  }
+
+  const decoded = verifyToken(token);
+
+  try {
+    const user = await User.findById(decoded.userId);
+    if (!user) {
+      return next(new customError("Not logged in", 401));
+    }
+    req.user = user;
+    next();
+  } catch (error) {
+    return next(new customError("Not logged in", 401));
+  }
+};
+
+const restrictTo = (...roles) => {
+  return (req, res, next) => {
+    if (!roles.includes(req.user.role)) {
+      return next(new customError("Not authorized", 403));
+    }
+
+    next();
+  };
+};
 
 // signup user
 const signup = async (req, res, next) => {
@@ -34,14 +64,7 @@ const signup = async (req, res, next) => {
     return next(new customError("Phone already exists", 400));
   }
 
-  const user = new User({
-    firstName,
-    lastName,
-    username,
-    password,
-    confirmPassword,
-    phone,
-  });
+  const user = new User(req.body);
 
   try {
     await user.save();
@@ -116,4 +139,6 @@ module.exports = {
   signin,
   logout,
   resetPassword,
+  protect,
+  restrictTo,
 };
