@@ -42,15 +42,15 @@ const updateBooking = async (req, res, next) => {
     return next(new customError("Booking not found", 404));
   }
 
+  // loop through the request body and update the booking
+  for (let key in req.body) {
+    booking[key] = req.body[key];
+  }
+
   if (req.body.date) {
     if (!booking.validateDate()) {
       return next(new customError("Invalid date", 400));
     }
-  }
-
-  // loop through the request body and update the booking
-  for (let key in req.body) {
-    booking[key] = req.body[key];
   }
 
   try {
