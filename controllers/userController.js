@@ -14,7 +14,6 @@ const search = (search) => {
 
 // get all users
 const getAllUsers = async (req, res, next) => {
-  req.query.fields = "firstName,lastName,username";
   const features = new APIFeatures(User.find(), req.query)
     .filter()
     .sort()
