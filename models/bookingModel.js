@@ -48,9 +48,9 @@ bookingSchema.pre("save", async function (next) {
 });
 
 // validate date
-bookingSchema.methods.validateDate = function () {
-  const date = new Date(this.date);
-  return date > Date.now();
+bookingSchema.methods.validateDate = function (date) {
+  const newDate = new Date(date);
+  return newDate > Date.now();
 };
 
 //populate user
