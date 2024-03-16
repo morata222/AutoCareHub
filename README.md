@@ -4,7 +4,7 @@
 <h6><b>https://auto-care-hub-pi.vercel.app</b></h6>
 
 <h2><b>Sign Up</b></h2>
-<h5><b>Route</b>: /api/auth/signup</h5>
+<h5>Route: /api/auth/signup</h5>
 <h5>Request Type: POST</h5>
 <h5>Request Body:</h5>
 <h6>firstName (string): User's first name</h6>
@@ -16,7 +16,7 @@
 
 
 <h2><b>Sign In</b></h2>
-<h6>Route: /api/auth/signin</h6>
+<h5>Route: /api/auth/signin</h5>
 <h5>Request Type: POST</h5>
 <h5>Request Body:</h5>
 <h6>username (string): User's username</h6>
@@ -24,8 +24,8 @@
 
 
 <h2><b>Logout</b></h2>
-<h6>Route: /api/auth/logout</h6>
-<h6>Request Type: GET</h6>
+<h5>Route: /api/auth/logout</h5>
+<h5>Request Type: GET</h5>
 
 <h2><b>Reset Password</b></h2>
 <h5>Route: /api/auth/reset-password</h5>
