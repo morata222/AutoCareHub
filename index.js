@@ -8,6 +8,7 @@ const notFound = require("./middleware/not-found");
 const authRoute = require("./routes/authRoute");
 const userRoute = require("./routes/userRoute");
 const bookingRoute = require("./routes/bookingRoute");
+const productRoute = require("./routes/productRoute");
 
 const app = express();
 
@@ -22,6 +23,7 @@ const PORT = 8000;
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/bookings", bookingRoute);
+app.use("/api/products", productRoute);
 
 app.use(notFound);
 app.use(errorHandler);
