@@ -3,7 +3,7 @@
 <h4>Base URL</h4>
 <h6><b>https://auto-care-hub-pi.vercel.app</b></h6>
 
-Sign Up
+<h6><b>Sign Up</b></h6>
 Route: /api/auth/signup
 Request Type: POST
 Request Body:
@@ -14,18 +14,21 @@ password (string): User's password
 confirmPassword (string): Confirm user's password
 phone (string): User's phone number
 
-Sign In
+
+<h6><b>Sign In</b></h6>
+
 Route: /api/auth/signin
 Request Type: POST
 Request Body:
 username (string): User's username
 password (string): User's password
 
-Logout
+
+<h6><b>Logout</b></h6>
 Route: /api/auth/logout
 Request Type: GET
 
-Reset Password
+<h6><b>Reset Password</b></h6>
 Route: /api/auth/reset-password
 Request Type: POST
 Request Body:
