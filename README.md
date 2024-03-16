@@ -1,9 +1,9 @@
 # AutoCare-Hub
 <h1>Authentication API Documentation</h1>
-<h4>Base URL</h4>
+<h2>Base URL</h2>
 <h6><b>https://auto-care-hub-pi.vercel.app</b></h6>
 
-<h4><b>Sign Up</b></h4>
+<h2><b>Sign Up</b></h2>
 <h5><b>Route</b>: /api/auth/signup</h5>
 <h5>Request Type: POST</h5>
 <h5>Request Body:</h5>
@@ -15,7 +15,7 @@
 <h6>phone (string): User's phone number</h6>
 
 
-<h4><b>Sign In</b></h4>
+<h2><b>Sign In</b></h2>
 <h6>Route: /api/auth/signin</h6>
 <h5>Request Type: POST</h5>
 <h5>Request Body:</h5>
@@ -23,11 +23,11 @@
 <h6>password (string): User's password</h6>
 
 
-<h4><b>Logout</b></h4>
+<h2><b>Logout</b></h2>
 <h6>Route: /api/auth/logout</h6>
 <h6>Request Type: GET</h6>
 
-<h4><b>Reset Password</b></h4>
+<h2><b>Reset Password</b></h2>
 <h5>Route: /api/auth/reset-password</h5>
 <h5>Request Type: POST</h5>
 <h5>Request Body:</h5>
