@@ -1,7 +1,7 @@
 # AutoCare-Hub
-Authentication API Documentation
-Base URL
-https://auto-care-hub-pi.vercel.app
+<h1>Authentication API Documentation</h1>
+<h4>Base URL</h4>
+<h6><b>https://auto-care-hub-pi.vercel.app</b></h6>
 
 Sign Up
 Route: /api/auth/signup
