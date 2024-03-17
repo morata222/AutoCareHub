@@ -9,6 +9,7 @@ const authRoute = require("./routes/authRoute");
 const userRoute = require("./routes/userRoute");
 const bookingRoute = require("./routes/bookingRoute");
 const productRoute = require("./routes/productRoute");
+const reviewRoute = require("./routes/reviewRoute");
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/bookings", bookingRoute);
 app.use("/api/products", productRoute);
+app.use("/api/reviews", reviewRoute);
 
 app.use(notFound);
 app.use(errorHandler);

@@ -1,6 +1,7 @@
 const Product = require("../models/productModel");
 const customError = require("../errors/customError");
 const APIFeatures = require("../utils/apiFeatures");
+const Review = require("../models/reviewModel");
 
 const search = (search) => {
   return {
@@ -65,15 +66,24 @@ const updateProduct = async (req, res, next) => {
 const deleteProduct = async (req, res, next) => {
   const { id } = req.params;
 
-  const product = await Product.findByIdAndDelete(id);
+  const product = await Product.findById(id);
 
   if (!product) {
     return next(new customError(`No product with id : ${id}`, 404));
   }
 
-  res.status(200).json({
-    message:"Product deleted successfully",
-  });
+  // delete all reviews for the product and then delete the product
+
+  try {
+    await Review.deleteMany({ product: id });
+    await Product.findByIdAndDelete(id);
+
+    res.status(200).json({
+      message: "Product deleted successfully",
+    });
+  } catch (error) {
+    return next(new customError("Product not deleted", 400));
+  }
 };
 
 module.exports = {
