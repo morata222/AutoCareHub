@@ -75,7 +75,7 @@ const updateUser = async (req, res, next) => {
 };
 
 const updateMyPassword = async (req, res, next) => {
-  const user = await User.findById(req.user._id).select("+password"); 
+  const user = await User.findById(req.user._id).select("+password");
   if (!user) {
     return next(new customError("User not found", 404));
   }
@@ -93,7 +93,11 @@ const updateMyPassword = async (req, res, next) => {
   if (!isMatch) {
     return next(new customError("Invalid current password", 400));
   }
-  // ADD FUNCTION COMPARE BETWEEN NEWPASSWORD AND CONFIRMNEWPASSWORD
+
+  if (newPassword !== confirmNewPassword) {
+    return next(new customError("Passwords do not match", 400));
+  }
+
   user.password = newPassword;
   user.confirmPassword = confirmNewPassword;
 
