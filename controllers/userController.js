@@ -75,7 +75,7 @@ const updateUser = async (req, res, next) => {
 };
 
 const updateMyPassword = async (req, res, next) => {
-  const user = await User.findById(req.user._id).select("+password");
+  const user = await User.findById(req.user._id).select("+password"); 
   if (!user) {
     return next(new customError("User not found", 404));
   }
@@ -93,6 +93,7 @@ const updateMyPassword = async (req, res, next) => {
   if (!isMatch) {
     return next(new customError("Invalid current password", 400));
   }
+  // ADD FUNCTION COMPARE BETWEEN NEWPASSWORD AND CONFIRMNEWPASSWORD
   user.password = newPassword;
   user.confirmPassword = confirmNewPassword;
 
@@ -110,10 +111,9 @@ const deleteUser = async (req, res, next) => {
   if (!user) {
     return next(new customError("User not found", 404));
   }
-
   try {
     await User.findByIdAndDelete(req.params.id);
-    res.status(204).json({ message: "User deleted successfully" });
+    res.status(200).json({ message: "User deleted successfully" });
   } catch (error) {
     // console.log(error);
     return next(new customError("User delete failed", 500));
