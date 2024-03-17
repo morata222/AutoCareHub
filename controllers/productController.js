@@ -71,7 +71,9 @@ const deleteProduct = async (req, res, next) => {
     return next(new customError(`No product with id : ${id}`, 404));
   }
 
-  res.status(204).json({});
+  res.status(200).json({
+    message:"Product deleted successfully",
+  });
 };
 
 module.exports = {

@@ -52,6 +52,8 @@ const updateBooking = async (req, res, next) => {
   for (let key in req.body) {
     booking[key] = req.body[key];
   }
+  
+
 
   try {
     const updatedBooking = await booking.save();
@@ -67,8 +69,10 @@ const deleteBooking = async (req, res, next) => {
     return next(new customError("Booking not found", 404));
   }
   try {
+    res.status(200).json({
+      message: "Booking deleted successfully",
+    });
     await Booking.findByIdAndDelete(req.params.id);
-    res.status(204).json({});
   } catch (error) {
     return next(new customError(error.message, 400));
   }
