@@ -7,11 +7,13 @@ const addToFavourites = async (req, res, next) => {
   const product = req.body.product;
 
   const favourite = await Favourite.findOne({ user });
+
   if (!favourite) {
     const newFavourite = new Favourite({
       user,
       products: [product],
     });
+
     try {
       await newFavourite.save();
       return res.status(201).json({
@@ -24,7 +26,9 @@ const addToFavourites = async (req, res, next) => {
     if (favourite.products.includes(product)) {
       return next(new customError("Product already in favourites", 400));
     }
+
     favourite.products.push(product);
+
     try {
       await favourite.save();
       return res.status(201).json({
@@ -67,15 +71,18 @@ const removeFavourite = async (req, res, next) => {
   const product = req.body.product;
 
   const favourite = await Favourite.findOne({ user });
+
   if (!favourite) {
     return next(new customError("Favourites not found", 404));
   }
   if (!favourite.products.includes(product)) {
     return next(new customError("Product not in favourites", 400));
   }
+
   favourite.products = favourite.products.filter(
     (favouriteProduct) => favouriteProduct.toString() !== product
   );
+
   try {
     if (favourite.products.length === 0) {
       await Favourite.findOneAndDelete({ user });

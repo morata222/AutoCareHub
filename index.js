@@ -11,6 +11,7 @@ const bookingRoute = require("./routes/bookingRoute");
 const productRoute = require("./routes/productRoute");
 const reviewRoute = require("./routes/reviewRoute");
 const favouriteRoute = require("./routes/favouriteRoute");
+const shippingLocationRoute = require("./routes/shippingLocationRoute");
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use("/api/bookings", bookingRoute);
 app.use("/api/products", productRoute);
 app.use("/api/reviews", reviewRoute);
 app.use("/api/favourites", favouriteRoute);
+app.use("/api/shipping-locations", shippingLocationRoute);
 
 app.use(notFound);
 app.use(errorHandler);
