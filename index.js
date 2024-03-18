@@ -12,6 +12,7 @@ const productRoute = require("./routes/productRoute");
 const reviewRoute = require("./routes/reviewRoute");
 const favouriteRoute = require("./routes/favouriteRoute");
 const shippingLocationRoute = require("./routes/shippingLocationRoute");
+const maintenanceLocationRoute = require("./routes/maintenanceLocationRoute");
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.use("/api/products", productRoute);
 app.use("/api/reviews", reviewRoute);
 app.use("/api/favourites", favouriteRoute);
 app.use("/api/shipping-locations", shippingLocationRoute);
+app.use("/api/maintenance-locations", maintenanceLocationRoute);
 
 app.use(notFound);
 app.use(errorHandler);
