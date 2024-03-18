@@ -10,6 +10,7 @@ const userRoute = require("./routes/userRoute");
 const bookingRoute = require("./routes/bookingRoute");
 const productRoute = require("./routes/productRoute");
 const reviewRoute = require("./routes/reviewRoute");
+const favouriteRoute = require("./routes/favouriteRoute");
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use("/api/users", userRoute);
 app.use("/api/bookings", bookingRoute);
 app.use("/api/products", productRoute);
 app.use("/api/reviews", reviewRoute);
+app.use("/api/favourites", favouriteRoute);
 
 app.use(notFound);
 app.use(errorHandler);
