@@ -21,6 +21,11 @@ const getBooking = async (req, res, next) => {
 const createBooking = async (req, res, next) => {
   const user = req.user._id;
 
+  const bookingExists = await Booking.findOne({ user });
+  if (bookingExists) {
+    return next(new customError("You already have a booking", 400));
+  }
+
   const booking = new Booking({ ...req.body, user });
 
   if (!booking.validateDate(booking.date)) {
@@ -52,8 +57,6 @@ const updateBooking = async (req, res, next) => {
   for (let key in req.body) {
     booking[key] = req.body[key];
   }
-  
-
 
   try {
     const updatedBooking = await booking.save();
