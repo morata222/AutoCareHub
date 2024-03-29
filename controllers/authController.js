@@ -35,8 +35,15 @@ const restrictTo = (...roles) => {
 
 // signup user
 const signup = async (req, res, next) => {
-  const { firstName, lastName, username, password, confirmPassword, phone } =
-    req.body;
+  const {
+    firstName,
+    lastName,
+    username,
+    password,
+    confirmPassword,
+    phone,
+    carType,
+  } = req.body;
 
   if (password !== confirmPassword) {
     return next(new customError("Password do not match", 400));
@@ -48,7 +55,8 @@ const signup = async (req, res, next) => {
     !username ||
     !password ||
     !confirmPassword ||
-    !phone
+    !phone ||
+    !carType
   ) {
     return next(new customError("Please enter all fields", 400));
   }

@@ -31,6 +31,10 @@ const userSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    carType: {
+      type: String,
+      required: true,
+    },
     role: {
       type: String,
       enum: ["admin", "user"],
