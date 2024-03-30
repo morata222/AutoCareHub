@@ -30,7 +30,7 @@ const createReview = async (req, res, next) => {
       review,
     });
   } catch (error) {
-    return next(new customError(error.message, 400));
+    return next(new customError("Review not created", 400));
   }
 };
 
@@ -66,10 +66,10 @@ const updateReview = async (req, res, next) => {
       runValidators: true,
     });
     res.status(200).json({
-      review: updatedReview,
+      message: "Review updated",
     });
   } catch (error) {
-    return next(new customError(error.message, 400));
+    return next(new customError("Review not updated", 400));
   }
 };
 
@@ -88,10 +88,10 @@ const deleteReview = async (req, res, next) => {
 
   try {
     await Review.findByIdAndDelete(id);
-    res.status(204).json({});
+    res.status(200).json({ message: "Review deleted" });
   } catch (error) {
     console.log(error);
-    return next(new customError(error.message, 400));
+    return next(new customError("Review not deleted", 400));
   }
 };
 

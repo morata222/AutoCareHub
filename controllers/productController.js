@@ -60,7 +60,7 @@ const updateProduct = async (req, res, next) => {
     return next(new customError(`No product with id : ${id}`, 404));
   }
 
-  res.status(200).json({ product });
+  res.status(200).json({ message: "Product updated successfully" });
 };
 
 const deleteProduct = async (req, res, next) => {

@@ -13,7 +13,7 @@ const createMaintenanceLocation = async (req, res, next) => {
     await maintenanceLocation.save();
     res.status(201).json({ maintenanceLocation });
   } catch (error) {
-    next(new customError(error.message, 400));
+    next(new customError("Something went wrong", 400));
   }
 };
 
@@ -32,7 +32,7 @@ const updateMaintenanceLocation = async (req, res, next) => {
     return next(new customError("No Maintenance location found", 404));
   }
 
-  res.status(200).json({ maintenanceLocation });
+  res.status(200).json({ message: "Maintenance location updated" });
 };
 
 const deleteMaintenanceLocation = async (req, res, next) => {

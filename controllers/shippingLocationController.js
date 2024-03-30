@@ -13,7 +13,7 @@ const createShippingLocation = async (req, res, next) => {
     await shippingLocation.save();
     res.status(201).json({ shippingLocation });
   } catch (error) {
-    next(new customError(error.message, 400));
+    next(new customError("Something went wrong", 400));
   }
 };
 
@@ -32,7 +32,7 @@ const updateShippingLocation = async (req, res, next) => {
     return next(new customError("No shipping location found", 404));
   }
 
-  res.status(200).json({ shippingLocation });
+  res.status(200).json({ message: "Shipping location updated" });
 };
 
 const deleteShippingLocation = async (req, res, next) => {

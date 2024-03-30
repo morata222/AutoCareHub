@@ -17,7 +17,7 @@ const addToFavourites = async (req, res, next) => {
     try {
       await newFavourite.save();
       return res.status(201).json({
-        newFavourite,
+        message: "Product added to favourites",
       });
     } catch (error) {
       return next(new customError(error.message, 400));
@@ -32,10 +32,10 @@ const addToFavourites = async (req, res, next) => {
     try {
       await favourite.save();
       return res.status(201).json({
-        favourite,
+        message: "Product added to favourites",
       });
     } catch (error) {
-      return next(new customError(error.message, 400));
+      return next(new customError("Something went wrong", 400));
     }
   }
 };
@@ -46,8 +46,6 @@ const getFavourites = async (req, res, next) => {
   if (!favourite) {
     return next(new customError("Favourites not found", 404));
   }
-
-  console.log(favourite.products);
 
   // remove the products that are not found
   const filteredFavourites = await Promise.all(
@@ -92,11 +90,11 @@ const removeFavourite = async (req, res, next) => {
     } else {
       await favourite.save();
       return res.status(200).json({
-        favourite,
+        message: "Product removed from favourites",
       });
     }
   } catch (error) {
-    return next(new customError(error.message, 400));
+    return next(new customError("Something went wrong", 400));
   }
 };
 

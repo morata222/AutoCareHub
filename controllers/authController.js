@@ -76,9 +76,9 @@ const signup = async (req, res, next) => {
 
   try {
     await user.save();
-    res.status(201).json({ msg: "User created successfully" });
+    res.status(201).json({ message: "User created successfully" });
   } catch (err) {
-    res.status(500).json({ msg: "Server error" });
+    res.status(500).json({ message: "Server error" });
   }
 };
 
@@ -105,14 +105,14 @@ const signin = async (req, res, next) => {
   // attach token to cookie
   attachCookies(res, user._id);
 
-  res.status(200).json({ msg: "User logged in successfully" });
+  res.status(200).json({ message: "User logged in successfully" });
 };
 
 // logout user
 const logout = async (req, res, next) => {
   // clear cookie
   res.clearCookie("token");
-  res.status(200).json({ msg: "User logged out successfully" });
+  res.status(200).json({ message: "User logged out successfully" });
 };
 
 // forgot password and reset password
@@ -135,10 +135,10 @@ const resetPassword = async (req, res, next) => {
 
   try {
     await user.save();
-    res.status(201).json({ msg: "Password reset successfully" });
+    res.status(201).json({ message: "Password reset successfully" });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ msg: "Server error" });
+    res.status(500).json({ message: "Server error" });
   }
 };
 

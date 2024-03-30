@@ -37,7 +37,7 @@ const createBooking = async (req, res, next) => {
     res.status(201).json({ booking: newBooking });
   } catch (error) {
     console.log(error);
-    return next(new customError(error.message, 400));
+    return next(new customError("Something went wrong", 500));
   }
 };
 
@@ -62,7 +62,7 @@ const updateBooking = async (req, res, next) => {
     const updatedBooking = await booking.save();
     res.status(200).json({ booking: updatedBooking });
   } catch (error) {
-    return next(new customError(error.message, 400));
+    return next(new customError("Something went wrong", 500));
   }
 };
 
@@ -77,7 +77,7 @@ const deleteBooking = async (req, res, next) => {
     });
     await Booking.findByIdAndDelete(req.params.id);
   } catch (error) {
-    return next(new customError(error.message, 400));
+    return next(new customError("Something went wrong", 500));
   }
 };
 
