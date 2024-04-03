@@ -42,7 +42,7 @@ bookingSchema.pre("save", async function (next) {
     time: this.time,
   });
   if (booking) {
-    return next(new Error("Booking already exists"));
+    return next(new customError("Booking already exists", 400));
   }
   next();
 });
